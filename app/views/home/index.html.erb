@@ -1,0 +1,11 @@
+<% if user_logged_in? %>
+    <div class="row">
+        <% @venues.each do |venues| %>
+            <div class="col s12 m3">
+                <%= venues["venue"]["name"].to_s %>
+            </div>
+        <% end %>
+    </div>
+<% else %>
+<% end %>
+    <a href="<%= authenticate_foursquare_index_path %>" class="btn" data-method="post">Login with Fousquare</a>

@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>DesafioJaya</title>
-    <%= csrf_meta_tags %>
+
+<head>
+  <title>DesafioJaya</title>
+  <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'application' %>
+          <%= stylesheet_pack_tag 'application' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+  <% if user_logged_in? %>
+    <nav class="amber darken-1">
+      <div class="nav-wrapper container">
+        <a href="#" class="right">
+          <%= current_user["first_name"] + " " + current_user["last_name"] %>
+        </a>
+
+        <img src="<%= current_user['photo_thumb'].to_s %>" class="profile-img right" />
+      </div>
+    </nav>
+    <% end %>
+      <div class="container">
+        <%= yield %>
+      </div>
+</body>
+
 </html>
