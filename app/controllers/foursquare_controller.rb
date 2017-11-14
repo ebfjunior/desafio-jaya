@@ -8,16 +8,10 @@ class FoursquareController < ApplicationController
         session["access_token"] = JSON.parse(response.body)["access_token"]
 
         login_user
-
-        redirect_to "/"
+        redirect_to root_path
     end
 
     private
-
-    def get_self
-        response = RestClient.get "https://api.foursquare.com/v2/users/self?oauth_token=#{session['access_token']}&v=#{Foursquare::VERSION_DATE}", {content_type: :json, accept: :json}
-        JSON.parse(response.body)['response']['user']
-    end
 
     def login_user
         @self = get_self
@@ -28,6 +22,11 @@ class FoursquareController < ApplicationController
         end
 
         session["current_user"] = @user
+    end
+
+    def get_self
+        response = RestClient.get "https://api.foursquare.com/v2/users/self?oauth_token=#{session['access_token']}&v=#{Foursquare::VERSION_DATE}", {content_type: :json, accept: :json}
+        JSON.parse(response.body)['response']['user']
     end
 end
 

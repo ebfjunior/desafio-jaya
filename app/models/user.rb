@@ -6,4 +6,6 @@ class User
   field :photo_thumb, type: String
   field :gender, type: String
   field :bio, type: String
+
+  embeds_many :venues
 end

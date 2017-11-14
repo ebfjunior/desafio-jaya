@@ -5,3 +5,20 @@
   margin: 5px 10px;
   border-radius: 50%;
 }
+
+.card .card-image img.floating-halfway-fab-img {
+  position: absolute;
+  top: 14px;
+  left: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  overflow: hidden;
+  z-index: 1;
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+}
+
+h1.header {
+  font-size: 1.8em;
+}

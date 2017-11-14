@@ -1,0 +1,43 @@
+<% unless @wishlist.blank? %>
+    <div class="row">
+        <h1 class="header orange-text">Wishlist</h1>
+    </div>
+    <div class="row">
+        <% @wishlist.each do |wish| %>
+            <div class="col s12 m3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="<%= wish['photo']%>" />
+                        <a href="
+                        <%= remove_venue_home_index_path(venue_id: wish['venue_id']) %>" data-method="delete" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">remove</i></a>
+                    </div>
+                    <div class="card-content">
+                        <b><%= wish["name"].to_s %></b>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+    </div>
+    <% end %>
+        <div class="row">
+            <h1 class="header orange-text">Recent venues</h1>
+        </div>
+        <div class="row">
+            <% wishlist_ids = @wishlist.reduce([]) {|arr, cur| arr << cur['venue_id']} %>
+                <% @venues.select {|venue| !wishlist_ids.include?(venue['venue']['id'])}.each do |venue| %>
+                    <div class="col s12 m6 l3">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="<%= venue['venue']['photo']%>" />
+                                <a href="<%= add_venue_home_index_path(venue_id: venue['venue']['id'], name: venue['venue']['name']) %>" data-method="post"
+                                    class="btn-floating halfway-fab waves-effect waves-light teal"><i class="material-icons">add</i></a>
+                                <img src="<%= venue['user']['photo']['prefix']%>64x64<%= venue['user']['photo']['suffix']%>" class="floating-halfway-fab-img"
+                                />
+                            </div>
+                            <div class="card-content">
+                                <b><%= venue["venue"]["name"].to_s %></b>
+                            </div>
+                        </div>
+                    </div>
+                    <% end %>
+        </div>

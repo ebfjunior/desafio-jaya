@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   helper_method :user_logged_in?
+  helper_method :authenticate_user
 
 
   protected
@@ -13,5 +14,9 @@ class ApplicationController < ActionController::Base
 
   def user_logged_in?
     session["current_user"].blank? ? false : true
+  end
+
+  def authenticate_user
+    redirect_to home_index_path unless user_logged_in?
   end
 end
