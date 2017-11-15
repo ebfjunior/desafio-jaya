@@ -1,9 +1,9 @@
 class FoursquareController < ApplicationController
     def authenticate
         domain = request.host
-        domain << request.port == "80" ? "" : ":#{request.port}"
+        domain << (request.port == "80" ? "" : ":#{request.port}")
         logger.fatal "::::"
-logger.fatal domain
+        logger.fatal domain
         redirect_to "https://foursquare.com/oauth2/authenticate?client_id=#{Foursquare::CLIENT_ID}&response_type=code&redirect_uri=http://#{domain}/foursquare/callback"
     end
 
