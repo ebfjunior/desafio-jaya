@@ -2,13 +2,15 @@ class FoursquareController < ApplicationController
     def authenticate
         domain = request.host
         domain << (request.port == "80" ? "" : ":#{request.port}")
-        logger.fatal "::::"
-        logger.fatal domain
+
         redirect_to "https://foursquare.com/oauth2/authenticate?client_id=#{Foursquare::CLIENT_ID}&response_type=code&redirect_uri=http://#{domain}/foursquare/callback"
     end
 
     def callback
-        response = RestClient.get "https://foursquare.com/oauth2/access_token?client_id=#{Foursquare::CLIENT_ID}&client_secret=#{Foursquare::CLIENT_SECRET}&grant_type=authorization_code&code=#{params['code']}&redirect_uri=http://localhost:3000/foursquare/callback", {content_type: :json, accept: :json}
+        domain = request.host
+        domain << (request.port == "80" ? "" : ":#{request.port}")
+
+        response = RestClient.get "https://foursquare.com/oauth2/access_token?client_id=#{Foursquare::CLIENT_ID}&client_secret=#{Foursquare::CLIENT_SECRET}&grant_type=authorization_code&code=#{params['code']}&redirect_uri=http://#{domain}/foursquare/callback", {content_type: :json, accept: :json}
         session["access_token"] = JSON.parse(response.body)["access_token"]
 
         login_user
