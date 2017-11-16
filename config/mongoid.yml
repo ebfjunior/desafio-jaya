@@ -159,18 +159,12 @@ test:
 production:
   clients:
     default:
-      database: test
+      database: desafio-jaya
       hosts:
-        - desafio-jaya-shard-00-00-yq1k6.mongodb.net:27017
-        - desafio-jaya-shard-00-01-yq1k6.mongodb.net:27017
-        - desafio-jaya-shard-00-02-yq1k6.mongodb.net:27017
+        - ds111336.mlab.com:11336
       options:
         user: ebfjunior
         password: 275298479Ebfju
         read:
           mode: :primary
         max_pool_size: 1
-        connect: :replica_set
-        replica_set: desafio-jaya-shard-0
-        auth_source: admin
-        ssl: true
