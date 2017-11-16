@@ -25,6 +25,7 @@
       <div class="nav-wrapper container">
         <a href="#!" data-activates="dropdown1" class="right dropdown-button">
           <%= current_user["first_name"] + " " + current_user["last_name"] %>
+            <i class="material-icons right">arrow_drop_down</i>
         </a>
 
         <img src="<%= current_user['photo_thumb'].to_s %>" class="profile-img right" />
