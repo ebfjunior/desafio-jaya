@@ -8,16 +8,22 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
         <%= javascript_pack_tag 'application' %>
-          <%= stylesheet_pack_tag 'application' %>
+          <%= javascript_pack_tag 'general' %>
+            <%= stylesheet_pack_tag 'application' %>
 
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+              <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
   <% if user_logged_in? %>
+    <ul id="dropdown1" class="dropdown-content">
+      <li>
+        <a href="<%= logoff_foursquare_index_path %>" data-method="delete">Logoff</a>
+      </li>
+    </ul>
     <nav class="amber darken-1">
       <div class="nav-wrapper container">
-        <a href="#" class="right">
+        <a href="#!" data-activates="dropdown1" class="right dropdown-button">
           <%= current_user["first_name"] + " " + current_user["last_name"] %>
         </a>
 

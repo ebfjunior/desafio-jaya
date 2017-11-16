@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get :callback
 
       post :authenticate
+      delete :logoff
     end
   end
 

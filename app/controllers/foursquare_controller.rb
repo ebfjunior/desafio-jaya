@@ -17,6 +17,11 @@ class FoursquareController < ApplicationController
         redirect_to root_path
     end
 
+    def logoff
+        reset_session
+        redirect_to root_path
+    end
+
     private
 
     def login_user
